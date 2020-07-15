@@ -20,8 +20,8 @@
     
         var img = document.getElementById("originalGreyscaleImage");
         
-        var imgWidth = img.offsetWidth;
-        var imgHeight = img.offsetHeight;
+        var imgWidth;
+        var imgHeight;
         
         var rayHue = 225.0;
         var skyHue = 200.0;
@@ -43,9 +43,12 @@
         
         var onDocumentLoad = function()
         {
+            imgWidth = img.offsetWidth;
+            imgHeight = img.offsetHeight;
+
             var canvas = document.getElementById("targetCanvas");
-            canvas.style.width = img.style.width;
-            canvas.style.height = img.style.height;
+            canvas.style.width = imgWidth;
+            canvas.style.height = imgHeight;
         
             //debugs
             generateSchema();
