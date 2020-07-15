@@ -43,8 +43,9 @@
         
         var onDocumentLoad = function()
         {
-            imgWidth = img.offsetWidth;
-            imgHeight = img.offsetHeight;
+            var style = window.getComputedStyle(img);
+            imgWidth = style.getPropertyValue('width');
+            imgHeight = style.getPropertyValue('height');
 
             var canvas = document.getElementById("targetCanvas");
             canvas.style.width = imgWidth;
