@@ -46,10 +46,6 @@
             var style = window.getComputedStyle(img);
             imgWidth = style.getPropertyValue('width');
             imgHeight = style.getPropertyValue('height');
-
-            var canvas = document.getElementById("targetCanvas");
-            var canvasContext = canvas.getContext("2d");
-            canvasContext.drawImage(img, 0, 0);
         
             //debugs
             generateSchema();
@@ -78,6 +74,7 @@
         {
             var canvas = document.getElementById("targetCanvas");
             var canvasContext = canvas.getContext("2d");
+            canvasContext.drawImage(img, 0, 0);
             var imgData = canvasContext.getImageData(0, 0, imgWidth, imgHeight);
             var pixels = imgData.data;
         
