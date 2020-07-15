@@ -69,7 +69,8 @@
             var canvas = document.getElementById("targetCanvas");
             var canvasContext = canvas.getContext("2d");
             canvasContext.drawImage(img, 0, 0);
-            var imgData = canvasContext.getImageData(0, 0, imgWidth, imgHeight).data;
+            var imgData = canvasContext.getImageData(0, 0, imgWidth, imgHeight);
+            var pixels = imgData.data;
         
             for(var i = 0; i < imgData.length; i += 4)
             {
@@ -105,13 +106,13 @@
                     continue;
         
         
-                imgData[i + 0] = rgba[0];
-                imgData[i + 1] = rgba[1];
-                imgData[i + 2] = rgba[2];
-                imgData[i + 3] = rgba[3];
+                pixels[i + 0] = rgba[0];
+                pixels[i + 1] = rgba[1];
+                pixels[i + 2] = rgba[2];
+                pixels[i + 3] = rgba[3];
         
             }
-        
+            imgData.data = pixels;
             canvasContext.putImageData(imgData, 0, 0);
         }
         
