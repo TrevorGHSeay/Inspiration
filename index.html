@@ -48,12 +48,17 @@
             imgHeight = style.getPropertyValue('height');
 
             var canvas = document.getElementById("targetCanvas");
-            canvas.style.width = imgWidth;
-            canvas.style.height = imgHeight;
+            var canvasContext = canvas.getContext("2d");
+            canvasContext.drawImage(img, 0, 0);
         
             //debugs
             generateSchema();
             fillTarget();
+
+            
+            // Set after filled
+            canvas.style.width = imgWidth;
+            canvas.style.height = imgHeight;
         }
         
         var generateSchema = function()
@@ -73,7 +78,6 @@
         {
             var canvas = document.getElementById("targetCanvas");
             var canvasContext = canvas.getContext("2d");
-            canvasContext.drawImage(img, 0, 0);
             var imgData = canvasContext.getImageData(0, 0, imgWidth, imgHeight);
             var pixels = imgData.data;
         
