@@ -75,7 +75,7 @@
             var canvas = document.getElementById("targetCanvas");
             var canvasContext = canvas.getContext("2d");
             canvasContext.drawImage(img, 0, 0);
-            var imgData = canvasContext.getImageData(0, 0, imgWidth, imgHeight);
+            var imgData = canvasContext.getImageData(0, 0, canvas.style.width, canvas.style.height);
             var pixels = imgData.data;
         
             for(var i = 0; i < imgData.length; i += 4)
