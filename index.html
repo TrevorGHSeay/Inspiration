@@ -72,10 +72,12 @@
             var imgData = canvasContext.getImageData(0, 0, canvas.width, canvas.height);
             var pixels = imgData.data;
         
-            for(var i = 0; i < imgData.length; i += 4)
+            console.log("pixels.length: " + pixels.length);
+
+            for(var i = 0; i < pixels.length; i += 4)
             {
                 var redHue = pixels[i];
-                var rgba;
+                var rgba = [0.0, 0.0, 0.0, 255.0];
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
@@ -101,9 +103,6 @@
         
                 else if(Math.abs(redHue - sunHue) < hueThresholdDelta)
                     rgba = newSunHue;
-
-                else
-                    rgba = [0.0, 0.0, 0.0, 255.0];
         
         
                 pixels[i + 0] = rgba[0];
