@@ -48,7 +48,7 @@
             <legend>Prospects</legend>
             <table>
                 <tr>
-                    <td><label for="Contented">Contented</label><input type="radio" id="Contented" name="Prospects"></td>
+                    <td><label for="Hopeful">Hopeful</label><input type="radio" id="Hopeful" name="Prospects"></td>
                 </tr>
                 <tr>
                     <td><label for="Stressed">Depressed</label><input type="radio" id="Stressed" name="Prospects"></td>
@@ -71,6 +71,28 @@
     
         var img = document.getElementById("originalGreyscaleImage");
         var canvas = document.getElementById("targetCanvas");
+
+        var isHappyCheckbox = document.getElementById("Happy");
+        var isHappy = function() { return isHappyCheckbox.checked; }
+        var isSadCheckbox = document.getElementById("Sad");
+        var isSad = function() { return isSadCheckbox.checked; }
+        var isAngryCheckbox = document.getElementById("Angry");
+        var isAngry = function() { return isAngryCheckbox.checked; }
+        var isBoredCheckbox = document.getElementById("Bored");
+        var isBored = function() { return isBoredCheckbox.checked; }
+
+        var isContentedCheckbox = document.getElementById("Contented");
+        var isContented = function() { return isContentedCheckbox.checked; }
+        var isDepressedCheckbox = document.getElementById("Depressed");
+        var isDepressed = function() { return isDepressedCheckbox.checked; }
+        var isAnxiousCheckbox = document.getElementById("Anxious");
+        var isAnxious = function() { return isAnxiousCheckbox.checked; }
+        
+        var isHopefulRadio = document.getElementById("Depressed");
+        var isHopeful = function() { return isHopefulRadio.checked; }
+        var isStressedRadio = document.getElementById("Anxious");
+        var isStressed = function() { return isStressedRadio.checked; }
+
         
         var imgWidth;
         var imgHeight;
@@ -86,19 +108,29 @@
         var frontHillHue = 75.0;
         var sunHue = 50.0;
         
-        var newRayHue = [0.0, 0.0, 0.0, 255.0];
-        var newSkyHue = [0.0, 0.0, 0.0, 255.0];
-        var newBackHillHue = [0.0, 0.0, 0.0, 255.0];
-        var newLeftHillHue = [0.0, 0.0, 0.0, 255.0];
-        var newRightHillHue = [0.0, 0.0, 0.0, 255.0];
-        var newWaterHue = [0.0, 0.0, 0.0, 255.0];
-        var newFrontHillHue = [0.0, 0.0, 0.0, 255.0];
-        var newSunHue = [0.0, 0.0, 0.0, 255.0];
+        var defaultRayHue =     [245, 233, 66, 255];
+        var defaultSkyHue =         [66, 173, 245, 255.0];
+        var defaultBackHillHue =    [49, 122, 34, 255];
+        var defaultLeftHillHue =    [60, 148, 41, 255];
+        var defaultRightHillHue =   [96, 173, 80, 255];
+        var defaultWaterHue =       [36, 75, 138, 255];
+        var defaultFrontHillHue =   [39, 171, 12, 255];
+        var defaultSunHue =         [252, 246, 157, 255];
+        
+        var newRayHue =         [0, 0, 0, 255];
+        var newSkyHue =         [0, 0, 0, 255];
+        var newBackHillHue =    [0, 0, 0, 255];
+        var newLeftHillHue =    [0, 0, 0, 255];
+        var newRightHillHue =   [0, 0, 0, 255];
+        var newWaterHue =       [0, 0, 0, 255];
+        var newFrontHillHue =   [0, 0, 0, 255];
+        var newSunHue =         [0, 0, 0, 255];
         
 
         var generateSchema = function()
         {
             // debugs
+            /*
             newRayHue = [0.0, 0.0, 0.0, 255.0];
             newSkyHue = [25.0, 25.0, 25.0, 255.0];
             newBackHillHue = [50.0, 50.0, 50.0, 255.0];
@@ -107,11 +139,45 @@
             newWaterHue = [125.0, 125.0, 125.0, 255.0];
             newFrontHillHue = [150.0, 150.0, 150.0, 255.0];
             newSunHue = [175.0, 175.0, 175.0, 255.0];
+            */
+
+            newRayHue =         generateHue(defaultRayHue);
+            newSkyHue =         generateHue(defaultSkyHue);
+            newBackHillHue =    generateHue(defaultBackHillHue);
+            newLeftHillHue =    generateHue(defaultLeftHillHue);
+            newRightHillHue =   generateHue(defaultRightHillHue);
+            newWaterHue =       generateHue(defaultWaterHue);
+            newFrontHillHue =   generateHue(defaultFrontHillHue);
+            newSunHue =         generateHue(defaultSunHue);
 
             fillTarget();
         }
 
-        
+        var generateHue = function(original)
+        {
+            var result = original;
+            if(isHappy())
+            {
+                result = [245, 215, 66, 255];
+            }
+            if(isAngry())
+            {
+                result[0] += result[0] * 0.5;
+            }
+            if(isBored)
+            {
+                result[0] += (result[1] - result[0]) * 0.5;
+                result[2] += (result[1] - result[2]) * 0.5;
+            }
+            if(isSad())
+            {
+                result[0] -= result[0] * 0.3333;
+                result[1] -= result[1] * 0.3333;
+                result[2] -= result[2] * 0.3333;
+            }
+            return result;
+        }
+
         var fillTarget = function()
         {
             //var canvas = document.getElementById("targetCanvas");
