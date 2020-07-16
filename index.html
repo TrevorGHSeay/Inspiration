@@ -233,6 +233,9 @@
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
                 {
                     rgba = newWaterHue;
+
+                    var x = i % canvas.width;
+                    var y = i / canvas.width;
                     
                     var multiplier = (x - imgCenter[0] + y - imgCenter[1]) / 4 / canvas.width;
                     
