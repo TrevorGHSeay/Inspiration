@@ -95,11 +95,9 @@
         var isStressedRadio = document.getElementById("Anxious");
         var isStressed = function() { return isStressedRadio.checked; }
 
-        
-        var imgWidth;
-        var imgHeight;
+        var imgHalfWidth = canvas.width / 2;
 
-        var imgCenter = [canvas.width / 2, canvas.height / 2];
+        var imgCenter = [imgHalfWidth, canvas.height / 2];
 
         var hueThresholdDelta = 20.0;
         
@@ -238,9 +236,11 @@
                     var x = i % canvas.width;
                     var y = i / canvas.width;
                     
-                    // Get normalized value [0 - 1] representing the distance from center to the edge
-                    var multiplier = Math.abs(x - imgCenter[0] + y - imgCenter[1]) / 4 / canvas.width;
+                    // Get normalized value [0 - 1] representing the distance from center to the edge, horizontally
+                    var multiplier = Math.abs(x - imgCenter[0]) / imgHalfWidth;
                     
+                    // Halve it to get a more reasonable offset
+                    multiplier /= 2;
 
                     rgba[0] *= multiplier;
                     rgba[1] *= multiplier;
