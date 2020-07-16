@@ -11,8 +11,8 @@
     <h1>Inspiration</h1>
     <p>An artwork generator, aimed to brighten the viewer's day.</p>
 
-    <img id="originalStencilImage" src="Sunrise - Original.jpg" width="auto" height="auto" alt="Could not load image; please adjust your settings.">
-    <img id="originalGreyscaleImage" src="Sunrise - Greyscale.jpg" width="auto" height="auto" alt="Could not load image; please adjust your settings.">
+    <img id="originalStencilImage" src="Sunrise - Original.jpg" width="944" height="606" alt="Could not load image; please adjust your settings.">
+    <img id="originalGreyscaleImage" src="Sunrise - Greyscale.jpg" width="944" height="606" alt="Could not load image; please adjust your settings.">
     
     <canvas id="targetCanvas" width="auto" height="auto"></canvas>
     
@@ -44,12 +44,6 @@
         
         var onDocumentLoad = function()
         {
-            var style = window.getComputedStyle(img);
-            imgWidth = style.getPropertyValue('width');
-            imgHeight = style.getPropertyValue('height');
-
-            canvas.minWidth = imgWidth;
-            canvas.minHeight = imgHeight;
         
             //debugs
             generateSchema();
@@ -74,7 +68,7 @@
             //var canvas = document.getElementById("targetCanvas");
             var canvasContext = canvas.getContext("2d");
             canvasContext.drawImage(img, 0, 0);
-            var imgData = canvasContext.getImageData(0, 0, 944, 606);
+            var imgData = canvasContext.getImageData(0, 0, canvas.width, canvas.height);
             var pixels = imgData.data;
         
             for(var i = 0; i < imgData.length; i += 4)
