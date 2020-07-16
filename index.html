@@ -233,11 +233,13 @@
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
                 {
                     rgba = newWaterHue;
-
+                    
+                    // Get x and y of i
                     var x = i % canvas.width;
                     var y = i / canvas.width;
                     
-                    var multiplier = (x - imgCenter[0] + y - imgCenter[1]) / 4 / canvas.width;
+                    // Get normalized value [0 - 1] representing the distance from center to the edge
+                    var multiplier = Math.abs(x - imgCenter[0] + y - imgCenter[1]) / 4 / canvas.width;
                     
 
                     rgba[0] *= multiplier;
