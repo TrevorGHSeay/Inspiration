@@ -111,7 +111,7 @@
         var sunHue = 50.0;
         
         var defaultRayHue =         [245, 233, 66, 255];
-        var defaultSkyHue =         [66, 173, 245, 255.0];
+        var defaultSkyHue =         [66, 173, 245, 255];
         var defaultBackHillHue =    [49, 122, 34, 255];
         var defaultLeftHillHue =    [60, 148, 41, 255];
         var defaultRightHillHue =   [96, 173, 80, 255];
@@ -146,19 +146,29 @@
             newSunHue = [175.0, 175.0, 175.0, 255.0];
             */
 
-            newRayHue =         generateHue(defaultRayHue);
-            newSkyHue =         generateHue(defaultSkyHue);
-            newBackHillHue =    generateHue(defaultBackHillHue);
-            newLeftHillHue =    generateHue(defaultLeftHillHue);
-            newRightHillHue =   generateHue(defaultRightHillHue);
-            newWaterHue =       generateHue(defaultWaterHue);
-            newFrontHillHue =   generateHue(defaultFrontHillHue);
-            newSunHue =         generateHue(defaultSunHue);
+            newRayHue =         generateProspectHue(defaultRayHue);
+            newSkyHue =         generateProspectHue(defaultSkyHue);
+            newSunHue =         generateProspectHue(defaultSunHue);
+            
+            newBackHillHue =    generateMoodHue(defaultBackHillHue);
+            newLeftHillHue =    generateMoodHue(defaultLeftHillHue);
+            newRightHillHue =   generateMoodHue(defaultRightHillHue);
+            newFrontHillHue =   generateMoodHue(defaultFrontHillHue);
+            
+            newWaterHue =       generateDispositionHue(defaultWaterHue);
 
             fillTarget();
         }
 
-        var generateHue = function(original)
+        var generateProspectHue = function(original)
+        {
+
+            //debug
+            return generateMoodHue(original);
+
+        }
+
+        var generateMoodHue = function(original)
         {
             var result = original;
             if(isHappy())
@@ -183,6 +193,11 @@
                 result[2] -= result[2] * 0.3333;
             }
             return result;
+        }
+
+        var generateDispositionHue = function(original)
+        {
+
         }
 
         var fillTarget = function()
