@@ -240,9 +240,9 @@
                     var multiplier = (x - imgCenter[0] + y - imgCenter[1]) / 4 / canvas.width;
                     
 
-                    rgba[0] += rgba[0] * multiplier;
-                    rgba[1] += rgba[1] * multiplier;
-                    rgba[2] += rgba[2] * multiplier;
+                    rgba[0] *= multiplier;
+                    rgba[1] *= multiplier;
+                    rgba[2] *= multiplier;
                 }
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
