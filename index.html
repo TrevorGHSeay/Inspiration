@@ -107,11 +107,8 @@
                 else if(Math.abs(redHue - sunHue) < 5.0)
                     rgba = newSunHue;
 
-                else if(Math.abs(redHue - 255.0) < 5.0)
-                    continue;
-        
                 else
-                    console.log("failed writing pixel of colour: " + redHue);
+                    rgba = [0.0, 0.0, 0.0, 255.0];
         
         
                 pixels[i + 0] = rgba[0];
