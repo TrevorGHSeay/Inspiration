@@ -6,16 +6,67 @@
 
 </head>
 
-<body onload="onDocumentLoad()">
+<body>
     
     <h1>Inspiration</h1>
     <p>An artwork generator, aimed to brighten the viewer's day.</p>
 
-    <img id="originalStencilImage" src="Sunrise - Original.jpg" width="944" height="606" alt="Could not load image; please adjust your settings.">
-    <img id="originalGreyscaleImage" src="Sunrise - Greyscale.jpg" width="944" height="606" alt="Could not load image; please adjust your settings.">
+
+    <form onsubmit="generateSchema()" action="#">
+        <fieldset>
+            <legend>Moods</legend>
+            <table>
+                <tr>
+                    <td><label for="Happy">Happy</label><input type="checkbox" id="Happy" name="Mood"></td>
+                </tr>
+                <tr>
+                    <td><label for="Sad">Sad</label><input type="checkbox" id="Sad" name="Mood"></td>
+                </tr>
+                <tr>
+                    <td><label for="Angry">Angry</label><input type="checkbox" id="Angry" name="Mood"></td>
+                </tr>
+                <tr>
+                    <td><label for="Bored">Bored</label><input type="checkbox" id="Bored" name="Mood"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Dispositions</legend>
+            <table>
+                <tr>
+                    <td><label for="Contented">Contented</label><input type="checkbox" id="Contented" name="Disposition"></td>
+                </tr>
+                <tr>
+                    <td><label for="Depressed">Depressed</label><input type="checkbox" id="Depressed" name="Disposition"></td>
+                </tr>
+                <tr>
+                    <td><label for="Anxious">Anxious</label><input type="checkbox" id="Anxious" name="Disposition"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Prospects</legend>
+            <table>
+                <tr>
+                    <td><label for="Contented">Contented</label><input type="radio" id="Contented" name="Prospects"></td>
+                </tr>
+                <tr>
+                    <td><label for="Stressed">Depressed</label><input type="radio" id="Stressed" name="Prospects"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <input type="submit" value="Generate">
+    </form>
+
+
+
+    <img id="originalStencilImage" src="Sunrise - Original.jpg" width="944" height="606" hidden alt="Could not load image; please adjust your settings.">
+    <img id="originalGreyscaleImage" src="Sunrise - Greyscale.jpg" width="944" height="606" hidden alt="Could not load image; please adjust your settings.">
     
     <canvas id="targetCanvas" width="944" height="606"></canvas>
+
     
+
     <script>
     
         var img = document.getElementById("originalGreyscaleImage");
@@ -44,13 +95,7 @@
         var newFrontHillHue = [0.0, 0.0, 0.0, 255.0];
         var newSunHue = [0.0, 0.0, 0.0, 255.0];
         
-        var onDocumentLoad = function()
-        {
-            //debugs
-            generateSchema();
-            fillTarget();
-        }
-        
+
         var generateSchema = function()
         {
             // debugs
@@ -62,7 +107,10 @@
             newWaterHue = [125.0, 125.0, 125.0, 255.0];
             newFrontHillHue = [150.0, 150.0, 150.0, 255.0];
             newSunHue = [175.0, 175.0, 175.0, 255.0];
+
+            fillTarget();
         }
+
         
         var fillTarget = function()
         {
