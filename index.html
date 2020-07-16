@@ -232,9 +232,8 @@
                 {
                     rgba = newWaterHue;
                     
-                    // Get x and y of i
-                    var x = i % canvas.width;
-                    var y = i / canvas.width;
+                    // Get x from i
+                    var x = i / canvas.width;
                     
                     // Get normalized value [0 - 1] representing the distance from center to the edge, horizontally
                     var multiplier = Math.abs(x - imgHalfWidth);
