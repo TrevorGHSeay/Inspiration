@@ -111,10 +111,8 @@
                 pixels[i + 3] = rgba[3];
         
             }
-            imgData.data.set(pixels);
+            imgData.data = pixels;
             canvasContext.putImageData(imgData, 0, 0);
-
-            console.log("image data put");
         }
         
     </script>
