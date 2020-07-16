@@ -23,6 +23,8 @@
         
         var imgWidth;
         var imgHeight;
+
+        var hueThresholdDelta = 5.0;
         
         var rayHue = 225.0;
         var skyHue = 200.0;
@@ -44,7 +46,6 @@
         
         var onDocumentLoad = function()
         {
-        
             //debugs
             generateSchema();
             fillTarget();
@@ -77,28 +78,28 @@
                 var rgba;
         
         
-                if(Math.abs(redHue - skyHue) < 5.0)
+                if(Math.abs(redHue - skyHue) < hueThresholdDelta)
                     rgba = newSkyHue;
         
-                else if(Math.abs(redHue - rayHue) < 5.0)
+                else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
                     rgba = newRayHue;
         
-                else if(Math.abs(redHue - backHillHue) < 5.0)
+                else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
         
-                else if(Math.abs(redHue - leftHillHue) < 5.0)
+                else if(Math.abs(redHue - leftHillHue) < hueThresholdDelta)
                     rgba = newLeftHillHue;
         
-                else if(Math.abs(redHue - rightHillHue) < 5.0)
+                else if(Math.abs(redHue - rightHillHue) < hueThresholdDelta)
                     rgba = newRightHillHue;
         
-                else if(Math.abs(redHue - waterHue) < 5.0)
+                else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
                     rgba = newWaterHue;
         
-                else if(Math.abs(redHue - frontHillHue) < 5.0)
+                else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
                     rgba = newFrontHillHue;
         
-                else if(Math.abs(redHue - sunHue) < 5.0)
+                else if(Math.abs(redHue - sunHue) < hueThresholdDelta)
                     rgba = newSunHue;
 
                 else
@@ -111,7 +112,7 @@
                 pixels[i + 3] = rgba[3];
         
             }
-            imgData.data = pixels;
+            //imgData.data.set(pixels);
             canvasContext.putImageData(imgData, 0, 0);
         }
         
