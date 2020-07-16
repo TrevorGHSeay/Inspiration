@@ -99,6 +99,8 @@
         var imgWidth;
         var imgHeight;
 
+        var imgCenter = [canvas.width / 2, canvas.height / 2];
+
         var hueThresholdDelta = 20.0;
         
         var rayHue = 225.0;
@@ -146,29 +148,29 @@
             newSunHue = [175.0, 175.0, 175.0, 255.0];
             */
 
-            newRayHue =         generateProspectHue(defaultRayHue);
-            newSkyHue =         generateProspectHue(defaultSkyHue);
-            newSunHue =         generateProspectHue(defaultSunHue);
+            newRayHue =         generatedProspectHue(defaultRayHue);
+            newSkyHue =         generatedProspectHue(defaultSkyHue);
+            newSunHue =         generatedProspectHue(defaultSunHue);
             
-            newBackHillHue =    generateMoodHue(defaultBackHillHue);
-            newLeftHillHue =    generateMoodHue(defaultLeftHillHue);
-            newRightHillHue =   generateMoodHue(defaultRightHillHue);
-            newFrontHillHue =   generateMoodHue(defaultFrontHillHue);
+            newBackHillHue =    generatedMoodHue(defaultBackHillHue);
+            newLeftHillHue =    generatedMoodHue(defaultLeftHillHue);
+            newRightHillHue =   generatedMoodHue(defaultRightHillHue);
+            newFrontHillHue =   generatedMoodHue(defaultFrontHillHue);
             
-            newWaterHue =       generateDispositionHue(defaultWaterHue);
+            newWaterHue =       generatedDispositionHue(defaultWaterHue);
 
             fillTarget();
         }
 
-        var generateProspectHue = function(original)
+        var generatedProspectHue = function(original)
         {
 
             //debug
-            return generateMoodHue(original);
+            return generatedMoodHue(original);
 
         }
 
-        var generateMoodHue = function(original)
+        var generatedMoodHue = function(original)
         {
             var result = original;
             if(isHappy())
@@ -195,9 +197,9 @@
             return result;
         }
 
-        var generateDispositionHue = function(original)
+        var generatedDispositionHue = function(original)
         {
-            return generateMoodHue(original);
+            return generatedMoodHue(original);
         }
 
         var fillTarget = function()
@@ -206,8 +208,6 @@
             var canvasContext = canvas.getContext("2d");
             var imgData = canvasContext.getImageData(0, 0, canvas.width, canvas.height);
             var pixels = imgData.data;
-        
-            console.log("pixels.length: " + pixels.length);
 
             for(var i = 0; i < pixels.length; i += 4)
             {
@@ -231,7 +231,16 @@
                     rgba = newRightHillHue;
         
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
+                {
                     rgba = newWaterHue;
+                    
+                    var multiplier = (x - imgCenter[0] + y - imgCenter[1]) / 4 / canvas.width;
+                    
+
+                    rgba[0] += rgba[0] * multiplier;
+                    rgba[1] += rgba[1] * multiplier;
+                    rgba[2] += rgba[2] * multiplier;
+                }
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
                     rgba = newFrontHillHue;
