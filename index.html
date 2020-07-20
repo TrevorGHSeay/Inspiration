@@ -119,8 +119,6 @@
         var defaultFrontHillHue =   [39, 171, 12, 255];
         var defaultSunHue =         [252, 246, 157, 255];
         
-        var newRayHue =         [0, 0, 0, 255];
-        var newSkyHue =         [0, 0, 0, 255];
         var newBackHillHue =    [0, 0, 0, 255];
         var newLeftHillHue =    [0, 0, 0, 255];
         var newRightHillHue =   [0, 0, 0, 255];
@@ -155,7 +153,7 @@
             newRightHillHue =   generatedMoodHue(defaultRightHillHue);
             newFrontHillHue =   generatedMoodHue(defaultFrontHillHue);
             
-            newWaterHue =       generatedDispositionHue(defaultWaterHue);
+            newWaterHue =       generatedMoodHue(defaultWaterHue);
 
             fillTarget();
         }
@@ -221,7 +219,7 @@
             return result;
         }
 
-        var generatedWaterHue = function(x, original)
+        var generatedWaterHueWithOffset = function(x, original)
         {
             var result = original;
                     
@@ -247,10 +245,10 @@
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
-                    rgba = newSkyHue;
+                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = newRayHue;
+                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultRayHue, false);
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
@@ -262,7 +260,7 @@
                     rgba = newRightHillHue;
         
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
-                    rgba = generatedWaterHue(i % canvas.width / 4, newWaterHue);
+                    rgba = generatedWaterHueWithOffset(i % canvas.width / 4, newWaterHue);
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
                     rgba = newFrontHillHue;
