@@ -52,7 +52,7 @@
                     <td><label for="Hopeful">Hopeful</label><input type="radio" id="Hopeful" name="Prospects"></td>
                 </tr>
                 <tr>
-                    <td><label for="Stressed">Depressed</label><input type="radio" id="Stressed" name="Prospects"></td>
+                    <td><label for="Doubtful">Doubtful</label><input type="radio" id="Doubtful" name="Prospects"></td>
                 </tr>
             </table>
         </fieldset>
@@ -92,8 +92,8 @@
         
         var isHopefulRadio = document.getElementById("Depressed");
         var isHopeful = function() { return isHopefulRadio.checked; }
-        var isStressedRadio = document.getElementById("Anxious");
-        var isStressed = function() { return isStressedRadio.checked; }
+        var isDoubtfulRadio = document.getElementById("Anxious");
+        var isDoubtful = function() { return isStressedRadio.checked; }
 
         var imgHalfWidth = canvas.width / 2;
 
@@ -146,10 +146,10 @@
             newSunHue = [175.0, 175.0, 175.0, 255.0];
             */
 
-            newRayHue =         generatedProspectHue(defaultRayHue);
-            newSkyHue =         generatedProspectHue(defaultSkyHue);
-            newSunHue =         generatedProspectHue(defaultSunHue);
+            //newRayHue =         generatedProspectHue(defaultRayHue);
+            //newSkyHue =         generatedProspectHue(defaultSkyHue);
             
+            newSunHue =         generatedMoodHue(defaultSunHue);
             newBackHillHue =    generatedMoodHue(defaultBackHillHue);
             newLeftHillHue =    generatedMoodHue(defaultLeftHillHue);
             newRightHillHue =   generatedMoodHue(defaultRightHillHue);
@@ -160,44 +160,77 @@
             fillTarget();
         }
 
-        var generatedProspectHue = function(original)
+        var generatedProspectHue = function(x, y, original, isInverse)
         {
+            var result = original;
+
+            // Saturate
+            if(isHopeful())
+            {
+                result[0] *= 1.1;
+                result[1] *= 1.1;
+                result[2] *= 1.1;
+            }
+
+            // Darken significantly
+            else if(isDoubtful)
+            {
+                result[0] *= 0.666;
+                result[1] *= 0.666;
+                result[2] *= 0.666;
+            }
 
             //debug
-            return generatedMoodHue(original);
+            return result;
 
         }
 
         var generatedMoodHue = function(original)
         {
             var result = original;
+
+            // Saturate
             if(isHappy())
             {
-                result[0] += 10;
-                result[1] += 10;
-                result[2] += 10;
+                result[0] += 10.0;
+                result[1] += 10.0;
+                result[2] += 10.0;
             }
+
+            // Accent red
             if(isAngry())
             {
-                result[0] += result[0] * 0.5;
+                result[0] *= 1.333;
             }
+
+            // Partial greyscale
             if(isBored)
             {
-                result[0] += (result[1] - result[0]) * 0.5;
-                result[2] += (result[1] - result[2]) * 0.5;
+                result[0] += (result[1] - result[0]) * 0.333;
+                result[2] += (result[1] - result[2]) * 0.333;
             }
+
+            // Darken
             if(isSad())
             {
-                result[0] -= result[0] * 0.3333;
-                result[1] -= result[1] * 0.3333;
-                result[2] -= result[2] * 0.3333;
+                result[0] *= 0.666;
+                result[1] *= 0.666;
+                result[2] *= 0.666;
             }
+
             return result;
         }
 
-        var generatedDispositionHue = function(original)
+        var generatedWaterHue = function(x, original)
         {
-            return generatedMoodHue(original);
+            var result = original;
+                    
+            // Get normalized value [0 - 1] representing the distance from center to x, horizontally
+            var multiplier = Math.abs(x - imgHalfWidth) / imgHalfWidth - 1.0;
+
+            result[0] *= 1.0 + multiplier;
+            result[1] *= multiplier;
+            result[2] *= multiplier;
         }
 
         var fillTarget = function()
@@ -234,22 +267,6 @@
                     
                     // Get x from i
                     var x = i % canvas.width / 4;
-                    
-                    // Get normalized value [0 - 1] representing the distance from center to the edge, horizontally
-                    var multiplier = Math.abs(x - imgHalfWidth);
-
-                    if(!debugged)
-                    {
-                        debugged = true;
-                        console.log("i=" + i + ", x=" + x + ", multiplier=" + multiplier + ", imgHalfWidth=" + imgHalfWidth);
-                    }
-                    
-                    // Halve it to get a more reasonable offset
-                    multiplier /= 2;
-
-                    rgba[0] *= multiplier;
-                    rgba[1] *= multiplier;
-                    rgba[2] *= multiplier;
                 }
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
