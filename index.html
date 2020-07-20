@@ -263,10 +263,7 @@
         
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
                 {
-                    rgba = newWaterHue;
-                    
-                    // Get x from i
-                    var x = i % canvas.width / 4;
+                    rgba = generatedWaterHue(i % canvas.width / 4, newWaterHue);
                 }
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
