@@ -262,9 +262,7 @@
                     rgba = newRightHillHue;
         
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
-                {
                     rgba = generatedWaterHue(i % canvas.width / 4, newWaterHue);
-                }
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
                     rgba = newFrontHillHue;
