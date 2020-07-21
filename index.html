@@ -136,9 +136,7 @@
         {
             var canvasContext = canvas.getContext("2d");
             canvasContext.drawImage(img, 0, 0);
-            
-            newOutlineHue =     generatedOutlineColour();
-            
+                        
             if(isAnxious())
             {
                 newSkyHue = [0, 0, 50, 255];
@@ -156,11 +154,13 @@
             newRightHillHue =   generatedMoodHue(defaultRightHillHue);
             newFrontHillHue =   generatedMoodHue(defaultFrontHillHue);
             newWaterHue =       generatedMoodHue(defaultWaterHue);
+            
+            newOutlineHue =     generatedOutlineColour();
 
             if(isDepressed())
-                newWaterHue =  [newWaterHue[0] + 50,
-                                newWaterHue[1] + 50,
-                                newWaterHue[2] + 50,
+                newWaterHue =  [newWaterHue[0] + 35,
+                                newWaterHue[1] + 35,
+                                newWaterHue[2] + 35,
                                 255];
 
             fillTarget();
@@ -174,11 +174,9 @@
         var generatedOutlineColour = function()
         {
             var result = [0.0, 0.0, 0.0, 255.0];
-            // Accent red and darken 
+            
             if(isAngry())
-            {
-                result[0] = 85.0;
-            }
+                result = newSunHue;
 
             return result;
         }
