@@ -173,7 +173,7 @@
 
             var multiplier = distance / imgHalfWidth;
             if(isInverse)
-                multiplier = imgHalfWidth - multiplier;
+                multiplier -= imgHalfWidth;
 
             result[0] *= 1.0 + multiplier;
             result[1] *= 1.0 + multiplier;
