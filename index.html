@@ -175,7 +175,7 @@
             // Get normalized multiplier [0 - 1] for distance, and invert change if isInverse
             var multiplier = distance / canvas.width;
             if(isInverse)
-                multiplier = 1.0 - imgHalfWidth;
+                multiplier = 1.0 - multiplier;
             
             multiplier += 1;
 
