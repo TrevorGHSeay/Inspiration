@@ -211,7 +211,7 @@
             }
 
             // Dull colours using partial greyscale averaging
-            if(isBored)
+            if(isBored())
             {
                 result[0] += (result[1] - result[0]) * 0.5;
                 result[2] += (result[1] - result[2]) * 0.5;
@@ -220,9 +220,9 @@
             // Darken
             if(isSad())
             {
-                result[0] *= 0.2;
-                result[1] *= 0.2;
-                result[2] *= 0.2;
+                result[0] *= 0.75;
+                result[1] *= 0.75;
+                result[2] *= 0.75;
             }
 
             return result;
