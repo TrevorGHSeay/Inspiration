@@ -206,15 +206,15 @@
             if(isAngry())
             {
                 result[0] *= 1.333;
-                result[1] *= 0.666
-                result[2] *= 0.666
+                result[1] *= 0.666;
+                result[2] *= 0.666;
             }
 
             // Dull colours using partial greyscale averaging
             if(isBored())
             {
-                result[0] += (result[1] - result[0]) * 0.5;
-                result[2] += (result[1] - result[2]) * 0.5;
+                result[0] += (result[1] - result[0]) * 0.666;
+                result[2] += (result[1] - result[2]) * 0.666;
             }
 
             // Darken
