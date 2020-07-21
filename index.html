@@ -198,14 +198,14 @@
             // Accent red
             if(isAngry())
             {
-                result[0] *= 1.333;
+                result[0] *= 1.5;
             }
 
             // Dull colours using partial greyscale
             if(isBored)
             {
-                result[0] += (result[1] - result[0]) * 0.333;
-                result[2] += (result[1] - result[2]) * 0.333;
+                result[0] += (result[1] - result[0]) * 0.5;
+                result[2] += (result[1] - result[2]) * 0.5;
             }
 
             // Darken
