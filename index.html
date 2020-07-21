@@ -110,6 +110,8 @@
         var frontHillHue = 75.0;
         var sunHue = 50.0;
         
+        var defaultOutlineHue =     [0, 0, 0, 255];
+
         var defaultRayHue =         [245, 233, 66, 255];
         var defaultSkyHue =         [66, 173, 245, 255];
         var defaultBackHillHue =    [49, 122, 34, 255];
@@ -125,6 +127,7 @@
         var newWaterHue =       [0, 0, 0, 255];
         var newFrontHillHue =   [0, 0, 0, 255];
         var newSunHue =         [0, 0, 0, 255];
+        var newOutlineHue =     [0, 0, 0, 255];
         
 
         var generateSchema = function()
@@ -132,6 +135,7 @@
             var canvasContext = canvas.getContext("2d");
             canvasContext.drawImage(img, 0, 0);
             
+            newOutlineHue =     generatedOutlineColour();
             
             newSunHue =         generatedMoodHue(defaultSunHue);
             newBackHillHue =    generatedMoodHue(defaultBackHillHue);
@@ -147,6 +151,18 @@
         var distanceBetween = function(x1, y1, x2, y2)
         {
             return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
+
+        var generatedOutlineColour = function()
+        {
+            var result = [0.0, 0.0, 0.0, 255.0];
+            // Accent red and darken 
+            if(isAngry())
+            {
+                result[0] = 25.0;
+            }
+
+            return result;
         }
 
         var generatedProspectHue = function(x, y, original, isInverse)
@@ -202,14 +218,6 @@
                 result[2] += 10.0;
             }
 
-            // Accent red and darken 
-            if(isAngry())
-            {
-                result[0] *= 1.333;
-                result[1] *= 0.666;
-                result[2] *= 0.666;
-            }
-
             // Dull colours using partial greyscale averaging
             if(isBored())
             {
@@ -252,7 +260,7 @@
             for(var i = 0; i < pixels.length; i += 4)
             {
                 var redHue = pixels[i];
-                var rgba = [0.0, 0.0, 0.0, 255.0];
+                var rgba;
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
@@ -278,6 +286,9 @@
         
                 else if(Math.abs(redHue - sunHue) < hueThresholdDelta)
                     rgba = newSunHue;
+
+                else
+                    rgba = newOutlineHue;
             
                 pixels[i + 0] = rgba[0];
                 pixels[i + 1] = rgba[1];
