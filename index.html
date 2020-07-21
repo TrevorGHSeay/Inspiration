@@ -139,7 +139,7 @@
             
             newOutlineHue =     generatedOutlineColour();
             
-            if(isDoubtful())
+            if(isAnxious())
             {
                 newSkyHue = [0, 0, 50, 255];
                 newRayHue = newSkyHue;
@@ -157,6 +157,10 @@
             newFrontHillHue =   generatedMoodHue(defaultFrontHillHue);
             newWaterHue =       generatedMoodHue(defaultWaterHue);
 
+            if(isDepressed())
+                newWaterHue =  [newWaterHue[0] + 50,
+                                newWaterHue[1] + 50,
+                                newWaterHue[2] + 50];
 
             fillTarget();
         }
@@ -172,7 +176,7 @@
             // Accent red and darken 
             if(isAngry())
             {
-                result[0] = 75.0;
+                result[0] = 85.0;
             }
 
             return result;
