@@ -219,7 +219,10 @@
             result[2] *= 1.0 + multiplier;
 
             if(!debugged)
+            {
                 console.log("x = " + x + ", multiplier = " + multiplier + ", result = " + result);
+                debugged = true;
+            }
             
             return result;
         }
@@ -238,10 +241,10 @@
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultSkyHue, true);
+                    rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, defaultSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultRayHue, false);
+                    rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, defaultRayHue, false);
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
@@ -253,7 +256,7 @@
                     rgba = newRightHillHue;
         
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
-                    rgba = generatedWaterHueWithOffset(i % canvas.width, newWaterHue);
+                    rgba = generatedWaterHueWithOffset(i / 4 % canvas.width, newWaterHue);
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
                     rgba = newFrontHillHue;
