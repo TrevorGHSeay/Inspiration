@@ -160,7 +160,8 @@
             if(isDepressed())
                 newWaterHue =  [newWaterHue[0] + 50,
                                 newWaterHue[1] + 50,
-                                newWaterHue[2] + 50];
+                                newWaterHue[2] + 50,
+                                255];
 
             fillTarget();
         }
@@ -284,7 +285,7 @@
                     rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isDoubtful());
+                    rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
