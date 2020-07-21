@@ -144,6 +144,11 @@
             fillTarget();
         }
 
+        var distanceBetween = function(x1, y1, x2, y2)
+        {
+            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
+
         var generatedProspectHue = function(x, y, original, isInverse)
         {
             var result = [original[0], original[1], original[2], original[3]];
@@ -162,6 +167,21 @@
                 result[0] *= 0.666;
                 result[1] *= 0.666;
                 result[2] *= 0.666;
+            }
+
+            var distance = distanceBetween(imgCenter[0], imgCenter[1], x, y);
+
+            var multiplier = distance / imgHalfWidth;
+
+            result[0] *= 1.0 + multiplier;
+            result[1] *= 1.0 + multiplier;
+            result[2] *= 1.0 + multiplier;
+
+            if(isInverse)
+            {
+                result[0] = 255.0 - result[0];
+                result[1] = 255.0 - result[1];
+                result[2] = 255.0 - result[2];
             }
             
             return result;
