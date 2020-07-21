@@ -228,7 +228,9 @@
 
             result[0] *= 1.0 + multiplier;
             result[1] *= 1.0 + multiplier;
-            result[2] *= 1.0 +multiplier;
+            result[2] *= 1.0 + multiplier;
+
+            return result;
         }
 
         var fillTarget = function()
@@ -267,18 +269,11 @@
         
                 else if(Math.abs(redHue - sunHue) < hueThresholdDelta)
                     rgba = newSunHue;
-        
-                try
-                {            
-                    pixels[i + 0] = rgba[0];
-                    pixels[i + 1] = rgba[1];
-                    pixels[i + 2] = rgba[2];
-                    pixels[i + 3] = rgba[3];
-                }
-                catch(err)
-                {
-                    console.log(err);
-                }
+            
+                pixels[i + 0] = rgba[0];
+                pixels[i + 1] = rgba[1];
+                pixels[i + 2] = rgba[2];
+                pixels[i + 3] = rgba[3];
         
             }
             //imgData.data.set(pixels);
