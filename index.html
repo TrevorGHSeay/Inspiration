@@ -169,13 +169,15 @@
                 result[2] *= 0.666;
             }
 
+            // Get the distance between this pixel and the center of the picture
             var distance = distanceBetween(imgCenter[0], imgCenter[1], x, y);
 
+            // Get normalized multiplier [0 - 1] for distance, and invert change if isInverse
             var multiplier = distance / canvas.width;
             if(isInverse)
                 multiplier = 1.0 - imgHalfWidth;
-            else
-                multiplier += 1;
+            
+            multiplier += 1;
 
             result[0] *= multiplier;
             result[1] *= multiplier;
