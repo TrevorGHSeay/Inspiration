@@ -178,7 +178,7 @@
                 result[2] *= 0.666;
             }
 
-            //debug
+
             return result;
 
         }
@@ -245,10 +245,10 @@
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultSkyHue, true);
+                    rgba = defaultSkyHue;// generatedProspectHue(i % canvas.width, i / canvas.width, defaultSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultRayHue, false);
+                    rgba = defaultRayHue;// generatedProspectHue(i % canvas.width, i / canvas.width, defaultRayHue, false);
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
@@ -260,7 +260,7 @@
                     rgba = newRightHillHue;
         
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
-                    rgba = generatedWaterHueWithOffset(i % canvas.width / 4, newWaterHue);
+                    rgba = generatedWaterHueWithOffset(i % canvas.width, newWaterHue);
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
                     rgba = newFrontHillHue;
