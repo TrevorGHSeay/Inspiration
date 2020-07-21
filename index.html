@@ -209,7 +209,7 @@
             var result = original;
             
             // Get normalized value [0 - 1] representing the distance from center to x, horizontally
-            var multiplier = Math.abs(x - imgHalfWidth) / imgHalfWidth - 1.0;
+            var multiplier = 1.0 - Math.abs(x - imgHalfWidth) / imgHalfWidth;
 
             result[0] *= 1.0 + multiplier;
             result[1] *= 1.0 + multiplier;
