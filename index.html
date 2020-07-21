@@ -204,6 +204,9 @@
             return result;
         }
 
+        // debugs
+        var debugged = false;
+
         var generatedWaterHueWithOffset = function(x, original)
         {
             var result = original;
@@ -214,6 +217,9 @@
             result[0] *= 1.0 + multiplier;
             result[1] *= 1.0 + multiplier;
             result[2] *= 1.0 + multiplier;
+
+            if(!debugged)
+                console.log("x = " + x + ", multiplier = " + multiplier + ", result = " + result);
             
             return result;
         }
