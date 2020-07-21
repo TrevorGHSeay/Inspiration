@@ -131,29 +131,15 @@
         {
             var canvasContext = canvas.getContext("2d");
             canvasContext.drawImage(img, 0, 0);
-
-            // debugs
-            /*
-            newRayHue = [0.0, 0.0, 0.0, 255.0];
-            newSkyHue = [25.0, 25.0, 25.0, 255.0];
-            newBackHillHue = [50.0, 50.0, 50.0, 255.0];
-            newLeftHillHue = [75.0, 75.0, 75.0, 255.0];
-            newRightHillHue = [100.0, 100.0, 100.0, 255.0];
-            newWaterHue = [125.0, 125.0, 125.0, 255.0];
-            newFrontHillHue = [150.0, 150.0, 150.0, 255.0];
-            newSunHue = [175.0, 175.0, 175.0, 255.0];
-            */
-
-            //newRayHue =         generatedProspectHue(defaultRayHue);
-            //newSkyHue =         generatedProspectHue(defaultSkyHue);
+            
             
             newSunHue =         generatedMoodHue(defaultSunHue);
             newBackHillHue =    generatedMoodHue(defaultBackHillHue);
             newLeftHillHue =    generatedMoodHue(defaultLeftHillHue);
             newRightHillHue =   generatedMoodHue(defaultRightHillHue);
             newFrontHillHue =   generatedMoodHue(defaultFrontHillHue);
-            
             newWaterHue =       generatedMoodHue(defaultWaterHue);
+
 
             fillTarget();
         }
@@ -178,7 +164,6 @@
                 result[2] *= 0.666;
             }
 
-
             return result;
 
         }
@@ -187,7 +172,7 @@
         {
             var result = original;
 
-            // Saturate
+            // Brighten
             if(isHappy())
             {
                 result[0] += 10.0;
@@ -211,9 +196,9 @@
             // Darken
             if(isSad())
             {
-                result[0] *= 0.666;
-                result[1] *= 0.666;
-                result[2] *= 0.666;
+                result[0] *= 0.333;
+                result[1] *= 0.333;
+                result[2] *= 0.333;
             }
 
             return result;
@@ -244,13 +229,16 @@
             {
                 var redHue = pixels[i];
                 var rgba = [0.0, 0.0, 0.0, 255.0];
+
+                var y = parseInt(i / canvas.width, 10);
+                var x = i - y * canvas.width;
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultSkyHue, true);
+                    rgba = generatedProspectHue(x, y, defaultSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultRayHue, false);
+                    rgba = generatedProspectHue(x, y, defaultRayHue, false);
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
@@ -262,7 +250,7 @@
                     rgba = newRightHillHue;
         
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
-                    rgba = generatedWaterHueWithOffset(i % canvas.width, newWaterHue);
+                    rgba = generatedWaterHueWithOffset(x, newWaterHue);
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
                     rgba = newFrontHillHue;
