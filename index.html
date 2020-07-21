@@ -270,7 +270,7 @@
                     rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, defaultSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, !isDoubtful());
+                    rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isDoubtful());
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
