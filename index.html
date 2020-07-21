@@ -172,17 +172,12 @@
             var distance = distanceBetween(imgCenter[0], imgCenter[1], x, y);
 
             var multiplier = distance / imgHalfWidth;
+            if(isInverse)
+                multiplier = imgHalfWidth - multiplier;
 
             result[0] *= 1.0 + multiplier;
             result[1] *= 1.0 + multiplier;
             result[2] *= 1.0 + multiplier;
-
-            if(!isInverse)
-            {
-                result[0] = 255.0 - result[0];
-                result[1] = 255.0 - result[1];
-                result[2] = 255.0 - result[2];
-            }
             
             return result;
 
