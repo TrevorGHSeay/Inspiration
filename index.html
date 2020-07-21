@@ -146,9 +146,9 @@
 
         var generatedProspectHue = function(x, y, original, isInverse)
         {
-            var result = original;
-            /*
-            // Saturate
+            var result = [original[0], original[1], original[2], original[3]];
+            
+            // Brighten
             if(isHopeful())
             {
                 result[0] *= 1.1;
@@ -163,7 +163,7 @@
                 result[1] *= 0.666;
                 result[2] *= 0.666;
             }
-            */
+            
             return result;
 
         }
@@ -214,8 +214,6 @@
             result[0] *= 1.0 + multiplier;
             result[1] *= 1.0 + multiplier;
             result[2] *= 1.0 + multiplier;
-
-            console.log("x = " + x + ", multiplier = " + multiplier + ", original = " + original + ", result = " + result);
             
             return result;
         }
