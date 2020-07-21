@@ -121,6 +121,7 @@
         var defaultFrontHillHue =   [39, 171, 12, 255];
         var defaultSunHue =         [252, 246, 157, 255];
         
+        var newRayHue =         [0, 0, 0, 255]
         var newBackHillHue =    [0, 0, 0, 255];
         var newLeftHillHue =    [0, 0, 0, 255];
         var newRightHillHue =   [0, 0, 0, 255];
@@ -136,6 +137,8 @@
             canvasContext.drawImage(img, 0, 0);
             
             newOutlineHue =     generatedOutlineColour();
+            
+            newRayHue =         isDoubtful() ? defaultSkyHue : defaultRayHue;
             
             newSunHue =         generatedMoodHue(defaultSunHue);
             newBackHillHue =    generatedMoodHue(defaultBackHillHue);
@@ -267,7 +270,7 @@
                     rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, defaultSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, defaultRayHue, false);
+                    rgba = generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, false);
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
