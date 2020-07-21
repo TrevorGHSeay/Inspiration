@@ -181,9 +181,11 @@
 
             //console.log("multiplier = " + multiplier + "\ndistance = " + distance + "\ncanvas.width = " + canvas.width + "\nimgCenter = " + imgCenter + "\nresult = \n" + result);
 
-            result[0] *= 0.5 * multiplier;
-            result[1] *= 0.5 * multiplier;
-            result[2] *= 0.5 * multiplier;
+            multiplier *= 0.666;
+
+            result[0] *= multiplier;
+            result[1] *= multiplier;
+            result[2] *= multiplier;
             
             return result;
         }
