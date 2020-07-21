@@ -147,7 +147,7 @@
         var generatedProspectHue = function(x, y, original, isInverse)
         {
             var result = original;
-
+            /*
             // Saturate
             if(isHopeful())
             {
@@ -163,7 +163,7 @@
                 result[1] *= 0.666;
                 result[2] *= 0.666;
             }
-
+            */
             return result;
 
         }
@@ -207,14 +207,14 @@
         var generatedWaterHueWithOffset = function(x, original)
         {
             var result = original;
-                    
+            /*
             // Get normalized value [0 - 1] representing the distance from center to x, horizontally
             var multiplier = Math.abs(x - imgHalfWidth) / imgHalfWidth - 1.0;
 
             result[0] *= 1.0 + multiplier;
             result[1] *= 1.0 + multiplier;
             result[2] *= 1.0 + multiplier;
-
+            */
             return result;
         }
 
@@ -229,16 +229,13 @@
             {
                 var redHue = pixels[i];
                 var rgba = [0.0, 0.0, 0.0, 255.0];
-
-                var y = parseInt(i / canvas.width, 10);
-                var x = i - y * canvas.width;
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(x, y, defaultSkyHue, true);
+                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = generatedProspectHue(x, y, defaultRayHue, false);
+                    rgba = generatedProspectHue(i % canvas.width, i / canvas.width, defaultRayHue, false);
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
@@ -250,7 +247,7 @@
                     rgba = newRightHillHue;
         
                 else if(Math.abs(redHue - waterHue) < hueThresholdDelta)
-                    rgba = generatedWaterHueWithOffset(x, newWaterHue);
+                    rgba = generatedWaterHueWithOffset(i % canvas.width, newWaterHue);
         
                 else if(Math.abs(redHue - frontHillHue) < hueThresholdDelta)
                     rgba = newFrontHillHue;
