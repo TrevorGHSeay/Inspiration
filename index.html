@@ -153,7 +153,7 @@
         {
             var result = [original[0], original[1], original[2], original[3]];
             
-            // Brighten
+            // Brighten slightly
             if(isHopeful())
             {
                 result[0] *= 1.1;
@@ -180,7 +180,6 @@
             result[2] *= 1.0 + multiplier;
             
             return result;
-
         }
 
         var generatedMoodHue = function(original)
@@ -195,13 +194,15 @@
                 result[2] += 10.0;
             }
 
-            // Accent red
+            // Accent red and darken 
             if(isAngry())
             {
-                result[0] *= 1.5;
+                result[0] *= 1.333;
+                result[1] *= 0.666
+                result[2] *= 0.666
             }
 
-            // Dull colours using partial greyscale
+            // Dull colours using partial greyscale averaging
             if(isBored)
             {
                 result[0] += (result[1] - result[0]) * 0.5;
