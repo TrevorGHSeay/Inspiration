@@ -49,7 +49,7 @@
             <legend>Prospects</legend>
             <table>
                 <tr>
-                    <td><label for="Hopeful">Hopeful</label><input type="radio" id="Hopeful" name="Prospects"></td>
+                    <td><label for="Hopeful">Hopeful</label><input type="radio" checked id="Hopeful" name="Prospects"></td>
                 </tr>
                 <tr>
                     <td><label for="Doubtful">Doubtful</label><input type="radio" id="Doubtful" name="Prospects"></td>
@@ -186,7 +186,7 @@
                 result[0] *= 1.333;
             }
 
-            // Partial greyscale
+            // Dull colours using partial greyscale
             if(isBored)
             {
                 result[0] += (result[1] - result[0]) * 0.333;
@@ -196,9 +196,9 @@
             // Darken
             if(isSad())
             {
-                result[0] *= 0.333;
-                result[1] *= 0.333;
-                result[2] *= 0.333;
+                result[0] *= 0.2;
+                result[1] *= 0.2;
+                result[2] *= 0.2;
             }
 
             return result;
