@@ -154,6 +154,13 @@
                     newRayHue[1] *= 1.2;
                     newRayHue[2] *= 1.2;
                 }
+
+                if(!isContented())
+                {
+                    newSkyHue[0] *= 0.9;
+                    newSkyHue[1] *= 0.9;
+                    newSkyHue[2] *= 0.9;
+                }
             }
             
             newSunHue =         generatedSunHue(defaultSunHue);
