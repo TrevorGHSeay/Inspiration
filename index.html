@@ -186,12 +186,18 @@
         {
             result = [original[0], original[1], original[2], original[3]];
 
-            if(isDoubtful)
+            if(isDoubtful())
             {
-                result[0] *= 0.25;
-                result[1] *= 0.25;
-                result[2] *= 0.25;
+                result[0] *= 1.25;
+                result[1] *= 1.25;
+                result[2] *= 1.25;
             }
+
+            if(isContented())
+            {
+                result[2] *= 0.85;
+            }
+
             return result;
         }
 
