@@ -141,7 +141,7 @@
             return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         }
 
-        function getRandomInt(max)
+        var getRandomInt = function(max)
         {
             return Math.floor(Math.random() * Math.floor(max));
         }
@@ -320,10 +320,10 @@
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
-                    rgba = isAnxious() && Math.random(pixels.length) % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
+                    rgba = isAnxious() && getRandomInt(pixels.length) % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = isAnxious() && Math.random(pixels.length) % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
+                    rgba = isAnxious() && getRandomInt(pixels.length) % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
