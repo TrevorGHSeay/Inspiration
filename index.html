@@ -141,12 +141,12 @@
             if(isAnxious())
             {
                 newSkyHue = [0, 0, 50, 255];
-                newRayHue = newSkyHue;
+                newRayHue = [newSkyHue[0], newSkyHue[1], newSkyHue[2], newSkyHue[3]];
             }
             else
             {
-                newSkyHue = defaultSkyHue;
-                newRayHue = defaultRayHue;
+                newSkyHue = [defaultSkyHue[0], defaultSkyHue[1], defaultSkyHue[2], defaultSkyHue[3]];
+                newRayHue = [defaultRayHue[0], defaultRayHue[1], defaultRayHue[2], defaultRayHue[3]];
 
                 if(isDoubtful())
                 {
@@ -156,7 +156,7 @@
                 }
             }
             
-            newSunHue =         defaultSunHue;
+            newSunHue =         generatedSunHue(defaultSunHue);
             newWaterHue =       defaultWaterHue;
             
             newBackHillHue =    generatedMoodHue(defaultBackHillHue);
@@ -199,12 +199,6 @@
                 result[0] *= 1.2;
                 result[1] *= 1.2;
                 result[2] *= 1.2;
-            }
-
-            if(isContented())
-            {
-                result[0] *= 1.333;
-                result[2] *= 1.333;
             }
 
             return result;
@@ -330,7 +324,7 @@
                     rgba = newFrontHillHue;
         
                 else if(Math.abs(redHue - sunHue) < hueThresholdDelta)
-                    rgba = generatedSunHue(newSunHue);
+                    rgba = newSunHue;
 
                 else
                     rgba = newOutlineHue;
