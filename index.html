@@ -147,6 +147,13 @@
             {
                 newSkyHue = defaultSkyHue;
                 newRayHue = defaultRayHue;
+                
+                if(IsDoubtful())
+                {
+                    newRayHue[0] *= 1.2;
+                    newRayHue[1] *= 1.2;
+                    newRayHue[2] *= 1.2;
+                }
             }
             
             newSunHue =         defaultSunHue;
@@ -189,9 +196,9 @@
 
             if(isDoubtful())
             {
-                result[0] *= 1.25;
-                result[1] *= 1.25;
-                result[2] *= 1.25;
+                result[0] *= 1.2;
+                result[1] *= 1.2;
+                result[2] *= 1.2;
             }
 
             if(isContented())
