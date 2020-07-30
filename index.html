@@ -132,6 +132,8 @@
         var newSunHue =         [0, 0, 0, 255];
         var newOutlineHue =     [0, 0, 0, 255];
 
+
+        var starlightHue = [200, 200, 200, 255];
         var starModifier = 750;
 
         
@@ -320,10 +322,10 @@
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
-                    rgba = isAnxious() && getRandomInt(pixels.length) % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
+                    rgba = isAnxious() && getRandomInt(pixels.length) % starModifier == 0 ? starlightHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = isAnxious() && getRandomInt(pixels.length) % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
+                    rgba = isAnxious() && getRandomInt(pixels.length) % starModifier == 0 ? starlightHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
