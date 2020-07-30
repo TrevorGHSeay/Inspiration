@@ -182,6 +182,19 @@
             return result;
         }
 
+        var generatedSunHue = function(original)
+        {
+            result = [original[0], original[1], original[2], original[3]];
+
+            if(isDoubtful)
+            {
+                result[0] *= 0.25;
+                result[1] *= 0.25;
+                result[2] *= 0.25;
+            }
+            return result;
+        }
+
         var generatedProspectHue = function(x, y, original, isInverse)
         {
             var result = [original[0], original[1], original[2], original[3]];
@@ -302,7 +315,7 @@
                     rgba = newFrontHillHue;
         
                 else if(Math.abs(redHue - sunHue) < hueThresholdDelta)
-                    rgba = newSunHue;
+                    rgba = generatedSunHue(newSunHue);
 
                 else
                     rgba = newOutlineHue;
