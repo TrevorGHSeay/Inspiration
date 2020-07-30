@@ -132,7 +132,20 @@
         var newSunHue =         [0, 0, 0, 255];
         var newOutlineHue =     [0, 0, 0, 255];
 
-        var starModifier = 150;
+        var starModifier = 750;
+
+        
+
+        var distanceBetween = function(x1, y1, x2, y2)
+        {
+            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
+
+        function getRandomInt(max)
+        {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
         
 
         var generateSchema = function()
@@ -182,11 +195,6 @@
                                 255];
 
             fillTarget();
-        }
-
-        var distanceBetween = function(x1, y1, x2, y2)
-        {
-            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         }
 
         var generatedOutlineColour = function()
@@ -312,10 +320,10 @@
         
         
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
-                    rgba = isAnxious() && i % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
+                    rgba = isAnxious() && Math.random(pixels.length) % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
         
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
-                    rgba = isAnxious() && i % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
+                    rgba = isAnxious() && Math.random(pixels.length) % starModifier == 0 ? defaultSunHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
         
                 else if(Math.abs(redHue - backHillHue) < hueThresholdDelta)
                     rgba = newBackHillHue;
