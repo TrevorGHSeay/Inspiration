@@ -166,13 +166,6 @@
                 newSkyHue = [defaultSkyHue[0], defaultSkyHue[1], defaultSkyHue[2], defaultSkyHue[3]];
                 newRayHue = [defaultRayHue[0], defaultRayHue[1], defaultRayHue[2], defaultRayHue[3]];
 
-                if(isDoubtful())
-                {
-                    newRayHue[0] += anxiousSkyOffset;
-                    newRayHue[1] += anxiousSkyOffset;
-                    newRayHue[2] += anxiousSkyOffset;
-                }
-
                 if(!isContented())
                 {
                     newSkyHue[0] -= anxiousSkyOffset;
@@ -196,6 +189,14 @@
                                 newWaterHue[1] + 35,
                                 newWaterHue[2] + 35,
                                 255];
+                                
+
+            if(isDoubtful())
+            {
+                newRightHillHue[0] *= 0.75;
+                newRightHillHue[1] *= 0.75;
+                newRightHillHue[2] *= 0.75;
+            }
 
             fillTarget();
         }
