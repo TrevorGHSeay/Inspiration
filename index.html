@@ -327,7 +327,7 @@
                     var randomModifier = getRandomInt(pixels.length) % starModifier;
                     rgba = isAnxious() && randomModifier == 0 ? starlightHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
 
-                    if(!isContented() && randomModifier != 0)
+                    if(isContented() && randomModifier != 0)
                     {
                         rgba[0] -= anxiousSkyOffset;
                         rgba[1] -= anxiousSkyOffset;
@@ -340,7 +340,7 @@
                     var randomModifier = getRandomInt(pixels.length) % starModifier;
                     rgba = isAnxious() && randomModifier == 0 ? starlightHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
                     
-                    if(!isContented() && randomModifier != 0)
+                    if(isContented() && randomModifier != 0)
                     {
                         rgba[0] -= anxiousSkyOffset;
                         rgba[1] -= anxiousSkyOffset;
