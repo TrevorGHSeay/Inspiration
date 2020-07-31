@@ -325,7 +325,7 @@
                 if(Math.abs(redHue - skyHue) < hueThresholdDelta)
                 {
                     rgba = isAnxious() && getRandomInt(pixels.length) % starModifier == 0 ? starlightHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newSkyHue, true);
-                    if(isAnxious())
+                    if(!isContented())
                     {
                         rgba[0] -= anxiousSkyOffset;
                         rgba[1] -= anxiousSkyOffset;
@@ -336,7 +336,7 @@
                 else if(Math.abs(redHue - rayHue) < hueThresholdDelta)
                 {
                     rgba = isAnxious() && getRandomInt(pixels.length) % starModifier == 0 ? starlightHue : generatedProspectHue(i / 4 % canvas.width, i / 4 / canvas.width, newRayHue, isAnxious());
-                    if(isAnxious())
+                    if(!isContented())
                     {
                         rgba[0] -= anxiousSkyOffset;
                         rgba[1] -= anxiousSkyOffset;
